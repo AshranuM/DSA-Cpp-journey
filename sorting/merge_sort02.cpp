@@ -1,30 +1,37 @@
+
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
 
-void next_permutation(vector<int> arr){
-    int n=arr.size();
+int main() {
+    vector<int> arr = {1, 2, 3};
 
-    int i=n-2;
-    while(i>=0 && arr[i]>=arr[i+1]){
-        i--;
+    vector<vector<int>> all;
 
-    }
-    if(i>=0){
-        int j=n-1;
-        while(arr[j]<=arr[i]){
-            j--;
+    sort(arr.begin(), arr.end());
+
+    do {
+        all.push_back(arr);
+    } while (next_permutation(arr.begin(), arr.end()));
+
+    vector<int> current = {1, 2, 3};
+
+    int index = -1;
+
+    for (int i = 0; i < all.size(); i++) {
+        if (all[i] == current) {
+            index = i;
+            break;
         }
-        swap(arr[i],arr[j]);
     }
-    reverse(arr.begin()+i+1,arr.end());
-}
-int main(){
-    vector<int> arr={2,1,5,4,3,0,0};
-    next_permutation(arr);
-    for(int x: arr){
-        cout<< x<< " ";
+
+    int nextIndex = (index + 1) % all.size();
+
+    for (int x : all[nextIndex]) {
+        cout << x << " ";
     }
+
     return 0;
 }
