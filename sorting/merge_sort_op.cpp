@@ -3,7 +3,7 @@
 #include <algorithm>
 using namespace std;
 
-void next_permutation(vector<int> arr){
+void next_permutation(vector<int>& arr){
     int n=arr.size();
 
     int i=n-2;
